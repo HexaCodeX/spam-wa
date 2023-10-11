@@ -14,7 +14,8 @@ class Spammer (Config):
             else:
                 log("warning", f"failed sent spam to '{ self.target }' !")
                 if confirm("do you want to spam again ?"):
-                    self.process()
+                    self.start()
+                    
         log("info", "oke, good bye !")
         exit()
         
