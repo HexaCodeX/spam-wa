@@ -1,5 +1,6 @@
-from utils.io import question
-from utils.interfaces import question
+from lib.Spammer import Spammer
+from utils.io import question, log
+from utils.interfaces import banner
 from utils.colors import blue, white, yellow
 
 if __name__ == "__main__":
@@ -11,8 +12,10 @@ if __name__ == "__main__":
     """)
     
     target = question("input spam target")
-    targets = targets.split(",")
+    targets = target.split(",")
     
     for phone in targets:
+        phone = phone.strip()
+        
         spammer = Spammer(target=phone)
         spammer.start()
