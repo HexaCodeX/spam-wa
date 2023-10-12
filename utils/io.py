@@ -1,4 +1,5 @@
 from utils.colors import *
+from lib.Config import Config
 
 icons = {
   "warning": f"[{yellow}!{white}]",
@@ -9,9 +10,18 @@ icons = {
 }
 
 def question (text):
-    return input(f"[{gray}?{white}] {text}: ")
+    _input_ = input(f"[{gray}?{white}] {text}: ")
+    
+    if _input_ == "":
+        return question(text)
+        
+    return _input_
 
 def confirm (text):
+    # skip confirm on development
+    if Config.environment in ["local", "development"]:
+        return True
+    
     _input_ = input(f"[{purple}?{white}] {text} [y/n]: ")
     if _input_ in ["y", "yes"]:
         return True
